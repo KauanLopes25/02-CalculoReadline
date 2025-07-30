@@ -5,7 +5,8 @@ veis)
 * Data: 30/07/2025
 * Versão: 1.0.0.0
 ********************************************************************************************/
-
+//Import do arquivo de medias escolares
+var calculoMedia = require('./modulo/media.js')
 
 /********************************************************************************************
  ************************************* Anotações ********************************************
@@ -103,8 +104,7 @@ entradaDeDados.question('Digite o nome do aluno:', function(nome){
                                 }else{
                                     // Calculando a média do aluno
                                     let statusAluno = ''
-                                    let media = (Number(nota1) + Number(nota2) + Number(nota3) + Number(nota4))/4
-
+                                    let media = calculoMedia.mediaEscolar(nota1, nota2, nota3, nota4)
                                     if(media < 5){
                                         statusAluno = 'REPROVADO'
 
@@ -114,7 +114,7 @@ entradaDeDados.question('Digite o nome do aluno:', function(nome){
                                         statusAluno = 'APROVADO'
                                     }
 
-                                    console.log(`Nota média do(a) ${nomeAluno}: ${media.toFixed(1)}\nO Aluno está: ${statusAluno}`)
+                                    console.log(`Nota média do(a) ${nomeAluno}: ${media}\nO Aluno está: ${statusAluno}`)
                                 }
                             })
                         }

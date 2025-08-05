@@ -38,7 +38,7 @@ veis)
  * != Validação de diferença de conteúdo.
  * === Validação de igualdade do tipo de dado e conteúdo.
  * !== Validação de diferença de tipo de dado e igualdade de conteúdo.
- * !=! Validação da diferença de tipo de dado e diferença de conteúdo.
+ * !=! Validação da diferença de tipo de dado e diferença de conteúdo. PROVAVELMENTE NÃO EXISTE
  * 
  * Operadores Lógicos
  * 
@@ -62,8 +62,9 @@ var entradaDeDados = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 })
-
+//Padrão de mensagens de erro da aplicação
 const MESSAGE_ERRO = 'ERRO: Nota Inválida!! \nA nota deve estar entre 0-10'
+const MASSAGE_ERROR_NOT_NUMBER = 'ERRO: Não é possivel calcular com a entrada de letras'
 
 // Entrada de dados do nome do aluno
 entradaDeDados.question('Digite o nome do aluno:', function (nome) {
@@ -106,12 +107,16 @@ entradaDeDados.question('Digite o nome do aluno:', function (nome) {
                                         entradaDeDados.close()
                                     }//Validação de tratamento de entrada
                                     else if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)) {
-                                        console.log('ERRO: Não é possivel calcular com a entrada de letras')
+                                        console.log(MASSAGE_ERROR_NOT_NUMBER)
                                     } else {
                                         // Calculando a média do aluno e definindo o status do aluno
                                         let media = calculoMedia.calcularMediaEscolar(nota1, nota2, nota3, nota4)
                                         let statusAluno = calculoMedia.definirStatusEscolar(media)
-                                        console.log(`Nota média do(a) ${nomeAluno}: ${media}\nO Aluno está: ${statusAluno}`)
+                                        if(statusAluno){
+                                            console.log(`Nota média do(a) ${nomeAluno}: ${media}\nO Aluno está: ${statusAluno}`)
+                                            entradaDeDados.close()
+                                        }
+                                        
                                     }
                                 })
                             }

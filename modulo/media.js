@@ -21,7 +21,7 @@ function definirStatusEscolar(media) {
     let mediaAluno = media
     if (mediaAluno < 5 && media >= 0) {
         statusAluno = 'REPROVADO'
-    } else if (mediaAluno >= 5 && media <= 7) {
+    } else if (mediaAluno >= 5 && media < 7) {
         statusAluno = 'RECUPERAÇÃO'
     } else if (mediaAluno >= 7 && media <= 10) {
         statusAluno = 'APROVADO'
